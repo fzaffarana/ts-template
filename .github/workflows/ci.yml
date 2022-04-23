@@ -2,13 +2,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v3
@@ -17,4 +17,4 @@ jobs:
         with:
           node-version: '16.x'
       - run: yarn
-      - run: yarn test
+      - run: yarn ci-pipeline
