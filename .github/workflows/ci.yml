@@ -17,4 +17,4 @@ jobs:
         with:
           node-version: '16.x'
       - run: yarn
-      - run: yarn test
+      - run: yarn ci-pipeline
