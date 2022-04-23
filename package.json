@@ -1,0 +1,37 @@
+{
+  "name": "ts-template",
+  "description": "Template for TypeScript projects",
+  "author": "Fabrizio Zaffarana <fzaffarana@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run build:init && yarn run build:js",
+    "build:init": "yarn run lint && rm -rf dist && mkdir dist",
+    "build:js": "yarn run tsc -p tsconfig.json",
+    "lint": "eslint . --ext .ts --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "lint:fix": "eslint . --fix --ext .ts --ignore-path .gitignore --ignore-pattern internals/scripts",
+    "test": "jest --coverage --verbose --runInBand",
+    "check-dependencies": "depcheck --ignores \"pre-commit\"",
+    "ci-pipeline": "npm run check-dependencies && npm run lint && npm run test",
+    "start": "yarn node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"yarn node dist/index.js\""
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "depcheck": "^1.4.3",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.6.2",
+    "ts-jest": "^27.1.4",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.6.3"
+  },
+  "pre-commit": [
+    "lint:fix"
+  ]
+}
